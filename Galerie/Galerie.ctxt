@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Galerie
+comment1.params=name
+comment1.target=Galerie(java.lang.String)
+comment2.params=name
+comment2.target=void\ setName(java.lang.String)
+comment3.params=bild
+comment3.target=void\ addBild(Bild)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=
+comment5.target=int\ berechneAnzVerkauft()
+comment6.params=kuenstler
+comment6.target=double\ berechneGesamtwert(java.lang.String)
+comment7.params=kuenstler
+comment7.target=int\ berechneAnzBilder(java.lang.String)
+comment8.params=kuenstler
+comment8.target=void\ printBilder(java.lang.String)
+comment9.params=
+comment9.target=void\ print()
+numComments=10

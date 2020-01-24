@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Zug
+comment1.params=zugId\ typ
+comment1.target=Zug(java.lang.String,\ char)
+comment2.params=waggon
+comment2.target=void\ addWaggon(Waggon)
+comment3.params=
+comment3.target=void\ waggonUebersicht()
+comment4.params=typ
+comment4.target=void\ setTyp(char)
+comment5.params=
+comment5.target=void\ setMaxWaggonAnz()
+numComments=6

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Lokomotive
+comment1.params=leistung\ antrieb
+comment1.target=Lokomotive(int,\ char)
+comment2.params=
+comment2.target=char\ getAntrieb()
+comment3.params=
+comment3.target=int\ getLeistung()
+comment4.params=
+comment4.target=java.lang.String\ getLokId()
+comment5.params=antrieb
+comment5.target=void\ setAntrieb(char)
+comment6.params=leistung
+comment6.target=void\ setLeistung(int)
+comment7.params=lokId
+comment7.target=void\ setLokId(java.lang.String)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

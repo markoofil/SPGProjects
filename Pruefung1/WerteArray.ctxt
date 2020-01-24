@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=WerteArray
+comment0.text=\ \ \nVereinfachte\ Variante\ der\ Klasse\ "WerteArray"\ fuer\ Pruefung\n\nName\:\ \ \ \ Marko\ Filipovic\nKlasse\:\ \ 3\ BBIF\nPruef-Nr.\:\ \ PRUEF____\ \n
+comment1.params=
+comment1.target=WerteArray()
+comment10.params=
+comment10.target=void\ print()
+comment11.params=
+comment11.target=void\ testFuellung()
+comment2.params=
+comment2.target=void\ quotLastFirst()
+comment3.params=
+comment3.target=void\ anzLinksGroesserRechts()
+comment4.params=
+comment4.target=void\ maxWertNachVorne()
+comment5.params=
+comment5.target=void\ minAbstand1()
+comment6.params=
+comment6.target=void\ minAbstand2()
+comment7.params=
+comment7.target=void\ rechtsShift()
+comment8.params=
+comment8.target=void\ rechtsShift2()
+comment9.params=
+comment9.target=void\ rechtsShift3()
+numComments=12

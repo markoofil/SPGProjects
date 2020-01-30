@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=Zug
+comment1.params=zugId\ typ
+comment1.target=Zug(java.lang.String,\ char)
+comment10.params=
+comment10.target=int\ removeWaggonsLeer()
+comment10.text=\n\ \ \ \ public\ int\ removeWaggonsLeer()\ //\ Bissi\ geschummelt,\ aber\ ge\u00FCbt\!\ --\ klappt\ dennoch\ nicht\n\ \ \ \ {\n\ \ \ \ \ \ \ \ int\ sum\=0;\n\ \ \ \ \ \ \ \n\ \ \ \ \ \ \ \ while(\ Iterator<Waggon>()\ waggons.iterator().hasNext())\n\ \ \ \ \ \ \ \ {\n\ \ \ \ \ \ \ \ \ \ \ \ if(waggons.iterator().next().getPassagiere()\ \=\=\ 0)\n\ \ \ \ \ \ \ \ \ \ \ \ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ waggons.iterator().remove();\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum++;\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ System.out.println(sum+"\ leere\ Waggons\ wurden\ entfernt\!");\n\ \ \ \ \ \ \ \ return\ sum;\n\ \ \ \ }\n
+comment11.params=waggon\ pos
+comment11.target=boolean\ insertWaggon(Waggon,\ int)
+comment2.params=typ
+comment2.target=void\ setTyp(char)
+comment3.params=
+comment3.target=void\ setMaxWaggonAnz()
+comment4.params=waggon
+comment4.target=boolean\ addWaggon(Waggon)
+comment5.params=
+comment5.target=java.lang.String\ waggonUebersicht()
+comment6.params=
+comment6.target=float\ berechneGewicht()
+comment7.params=
+comment7.target=float\ berechneDurchschnittsGewicht()
+comment8.params=klasse
+comment8.target=int\ berechneAnzPlaetzeFrei(int)
+comment9.params=pos
+comment9.target=boolean\ removeWaggon(int)
+numComments=12

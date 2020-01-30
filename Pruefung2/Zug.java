@@ -6,7 +6,7 @@ public class Zug
     private char typ;
     private Lokomotive lok;
     private int maxWaggonAnz;
-    private Vector<Waggon> waggons;
+    private Vector<Waggon> waggons = new Vector<Waggon>();
     private String zugId;
     // ------------------------------ constructor --------------------------
 
@@ -19,17 +19,23 @@ public class Zug
 
     public void addWaggon(Waggon waggon)
     {
-        if(waggons != null)
+        if(waggon != null)
         {
             if(!waggons.contains(waggon))
             {
-                waggons.add(waggon);
-                System.out.println("Waggon hinzugefügt");
+                if(waggons.size() < maxWaggonAnz)
+                {
+                    waggons.add(waggon);
+                    System.out.println("Waggon hinzugefügt");
+                }
+                else
+                    System.out.println("Max Anzahl an Waggons überschritten");
             }
             else
                 System.out.println("Waggon bereits enthalten");
         }
-        System.out.println("Null-Ref. übergeben");
+        else
+            System.out.println("Null-Ref. übergeben");
     }
 
     public void waggonUebersicht()
@@ -37,17 +43,16 @@ public class Zug
         String str = "";
         for(Waggon w : waggons)
         {
-            if(waggons != null)
-            {
-                str += waggons.indexOf(w);
-            }
-            str += ". Waggon Gewicht = ";
-            str += ", Klasse = ";
-            str += ", Max.-Plaetze = ";
-            str += ", Passagiere = ";
-        }
-    }
 
+            str += waggons.indexOf(w)+1;
+            str += ". Waggon Gewicht = "+w.berecneGewicht();
+            str += ", Klasse = "+w.getKlasse();
+            str += ", Max.-Plaetze = "+w.getPlaetzeMax();
+            str += ", Passagiere = "+w.getPassagiere();
+            str += "\n";
+        }
+        System.out.println(str);
+    }
     // ------------------------------ setter -------------------------- 
     public void setTyp(char typ)
     {//Fuer PLUEP ohne Plausibilitaetspruefung

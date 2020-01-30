@@ -160,7 +160,8 @@ public class WerteArray
 
     //Versuch 2
     public void rechtsShift2()
-    {
+    {           // Abfangen, wenn nicht genügend Elemente im Array vorhanden sind.
+
         int temp = array[array.length-1];
         for(int i= array.length-1; i > 0; i--)
         {

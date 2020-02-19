@@ -67,8 +67,9 @@ public class Personalbuero
 		for(Mitarbeiter m : mitarbeiter)
 		{
 			sb.append(m).append("\n");
-		
 		}
 		return 	sb.toString();
+		
 	}
+	
 }

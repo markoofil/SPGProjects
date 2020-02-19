@@ -26,12 +26,12 @@ public class Freelancer extends Mitarbeiter
 
 	public void setStundenSatz(float stundenSatz)
 	{
-		if(stundenSatz > 0 && stundenSatz < 1500)
+		if(stundenSatz > 0 )
 		{
 			this.stundenSatz = stundenSatz;
 		}
 		else
-			System.out.println("Stundensatz muss zw. 0 & 1500 sein");
+			System.out.println("Stundensatz muss > 0 sein");
 	}
 
 	public void setStunden(int stunden)
@@ -50,10 +50,11 @@ public class Freelancer extends Mitarbeiter
 	}
 	public String toString()
 	{
-		if(getGesch() == 'm')
-			return "Freelancer: "+super.toString();
-		else
-			return "Freelancerin: "+super.toString();
+//		if(getGesch() == 'm')
+//			return "Freelancer: "+super.toString();
+//		else
+//			return "Freelancerin: "+super.toString();
+		return super.toString();
 	}
 	
 }

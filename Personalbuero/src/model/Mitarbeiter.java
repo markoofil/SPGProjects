@@ -8,20 +8,6 @@ public abstract class Mitarbeiter
 	private Year gebJahr, eintrJahr;
 	private char gesch;
 
-	public char getGesch()
-	{
-		return gesch;
-	}
-
-	public void setGesch(char gesch)
-	{
-		gesch = Character.toLowerCase(gesch);
-		if(gesch == 'w' || gesch == 'm' || gesch == 'x')
-		this.gesch = gesch;
-		else
-			System.out.println("Falsches Format für setGesch gewählt!! (w,m oder x)");
-	}
-
 	public Mitarbeiter(String name, Year gebJahr, Year eintrJahr, char gesch)
 	{
 		setName(name);
@@ -87,6 +73,20 @@ public abstract class Mitarbeiter
 
 	}
 
+	public char getGesch()
+	{
+		return gesch;
+	}
+
+	public void setGesch(char gesch)
+	{
+		gesch = Character.toLowerCase(gesch);
+		if(gesch == 'w' || gesch == 'm' || gesch == 'x')
+			this.gesch = gesch;
+		else
+			System.out.println("Falsches Format für setGesch gewählt!! (w,m oder x)");
+	}
+
 	// -------------------------------------- others -----------------------
 	public int berechneAlter()
 	{
@@ -121,8 +121,6 @@ public abstract class Mitarbeiter
 
 	public abstract float berechneGehalt();
 
-	
-
 	public float berechnePraemie(Year jahr)
 	{
 		if(jahr != null)
@@ -132,13 +130,13 @@ public abstract class Mitarbeiter
 			case 15:
 				return berechneGehalt();
 			case 25:
-				return berechneGehalt()*2;
+				return berechneGehalt() * 2;
 			case 35:
-				return berechneGehalt()*3;
+				return berechneGehalt() * 3;
 			case 40:
-				return berechneGehalt()*4;
+				return berechneGehalt() * 4;
 			case 50:
-				return berechneGehalt()*6;		
+				return berechneGehalt() * 6;
 			}
 		}
 		else
@@ -148,22 +146,28 @@ public abstract class Mitarbeiter
 			case 15:
 				return berechneGehalt();
 			case 25:
-				return berechneGehalt()*2;
+				return berechneGehalt() * 2;
 			case 35:
-				return berechneGehalt()*3;
+				return berechneGehalt() * 3;
 			case 40:
-				return berechneGehalt()*4;
+				return berechneGehalt() * 4;
 			case 50:
-				return berechneGehalt()*6;		
+				return berechneGehalt() * 6;
 			}
 		}
 		return 0;
-		
+
 	}
+
 	public String toString()
 	{
-		return "Name: " + name + ", Geb.Jahr: " + gebJahr + ", Alter: " + berechneAlter()+", Geschlecht: "+getGesch() + ", Eintr.Jahr: " + eintrJahr
-				+ ", Dienstalter: " + berechneDienstalter()+ ", Gehalt: "+berechneGehalt();
+		StringBuffer sb = new StringBuffer(10000);
+		
+		sb.append(getClass().getSimpleName()).append(" Name: ").append(name).append(" , Geb.Jahr: ").append(gebJahr).append(", Alter: ");
+		sb.append(berechneAlter()).append(", Geschlecht: ").append(getGesch()).append(", Eintr.Jahr: ").append(eintrJahr).append(", Dienstalter: ");
+		sb.append(berechneDienstalter()).append(", Gehalt: ").append(berechneGehalt());
+		
+		return sb.toString();
 	}
 
 	public void print()

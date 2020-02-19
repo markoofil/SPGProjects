@@ -177,7 +177,7 @@ public class Personalbuero
 		Iterator<Mitarbeiter> iter = mitarbeiter.iterator();
 		while(iter.hasNext())
 		{
-			iter.remove(ma);
+			
 		}
 		
 		return false;

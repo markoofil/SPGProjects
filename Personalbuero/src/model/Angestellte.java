@@ -18,11 +18,8 @@ public class Angestellte extends Mitarbeiter
 	
 	public String toString()
 	{
-		if(getGesch() == 'm')
-			return "Angestellter: "+super.toString();
-		else
-			return "Angestellte: "+super.toString();
-		
+
+		return super.toString();
 	}
 
 }

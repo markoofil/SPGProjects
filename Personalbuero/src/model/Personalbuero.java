@@ -1,8 +1,10 @@
 package model;
 
+import java.time.Year;
 import java.util.Iterator;
 import java.util.LinkedList;
 import model.Angestellte;
+import model.Manager;
 
 public class Personalbuero
 {
@@ -20,7 +22,6 @@ public class Personalbuero
 		{
 			if(ma.getGesch() == 'w')
 				anz++;
-
 		}
 		if(anz > 0)
 			return (int) (anz / mitarbeiter.size() * 100);
@@ -115,10 +116,6 @@ public class Personalbuero
 
 	public float berechneAvgGehaltAngestellte()
 	{
-//		if(!mitarbeiter.isEmpty())
-//			return berechneGehaltsSumme() / (float) zaehleAngestellte();
-//		else
-//			System.out.println("Keine Mitarbeiter vorhanden!");
 
 		float sum = 0;
 		int anz = 0;
@@ -130,8 +127,8 @@ public class Personalbuero
 					sum += m.berechneGehalt();
 				anz++;
 			}
-		
-		 return sum / anz;
+
+			return sum / anz;
 		}
 		else
 			System.out.println("Nicht genügend Mitarbeiter vorhanden");
@@ -175,13 +172,14 @@ public class Personalbuero
 	public boolean kuendigen(Mitarbeiter ma)
 	{
 		Iterator<Mitarbeiter> iter = mitarbeiter.iterator();
-		while(iter.hasNext())
+		while (iter.hasNext())
 		{
-			
+			mitarbeiter.removeFirstOccurrence(ma);
+			System.out.println(ma + " wurde gekündigt");
+			return true;
 		}
-		
+
 		return false;
-		
 	}
 
 	public String toString()
@@ -195,4 +193,93 @@ public class Personalbuero
 
 	}
 
+	public String topVerdiener()
+	{
+
+		float max = 0;
+		int pos = 0;
+		if(!mitarbeiter.isEmpty())
+		{
+			for (Mitarbeiter ma : mitarbeiter)
+			{
+				if(max < ma.berechneGehalt())
+				{
+					max = ma.berechneGehalt();
+					pos = mitarbeiter.indexOf(ma);
+				}
+			}
+			return "Gehalt : " + max + " " + mitarbeiter.get(pos);
+		}
+		else
+			return "Gähnende Leeeeeere";
+	}
+
+	public String topVerdiener(float gehalt)
+	{
+		String str = "";
+		if(!mitarbeiter.isEmpty())
+		{
+			for (Mitarbeiter m : mitarbeiter)
+			{
+				if(m.berechneGehalt() >= gehalt)
+				{
+					str += m.toString() + "\n";
+				}
+
+			}
+			return str;
+		}
+		return "irgendwas lief bei topVerdiener(gehalt) schief";
+
+	}
+
+	public String gehaltsListe()
+	{
+		String str = "";
+
+		if(!mitarbeiter.isEmpty())
+		{
+			for (Mitarbeiter ma : mitarbeiter)
+			{
+				str += ma.getName() + " € ";
+				str += ma.berechneGehalt() + "\n";
+			}
+		}
+
+		return str;
+	}
+
+	public String praemienListe(Year jahr)
+	{
+		String str = "";
+
+		for (Mitarbeiter ma : mitarbeiter)
+		{
+			if(ma.berechnePraemie(null) != 0)
+			{
+				str += ma.getName() + " ";
+				str += ma.getEintrJahr() + " ";
+				str += ma.berechnePraemie(null) + "\n";
+			}
+		}
+
+		return str;
+	}
+
+	public void erhoeheManagerFixum(int proz)
+	{
+		if(!mitarbeiter.isEmpty())
+		{
+			for (Mitarbeiter ma : mitarbeiter)
+			{
+				if(ma instanceof Manager)
+				{
+					((Manager) ma).setFixum( ((Manager) ma).getFixum() * ((float)(100+proz) / 100) );
+					System.out.println("Fixum wurde um "+proz+"% erhöht!");
+				}
+			}
+		}
+		else
+			System.out.println("Keine Mitarbeiter vorhanden");
+	}
 }

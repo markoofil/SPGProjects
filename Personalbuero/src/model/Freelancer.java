@@ -50,10 +50,7 @@ public class Freelancer extends Mitarbeiter
 	}
 	public String toString()
 	{
-//		if(getGesch() == 'm')
-//			return "Freelancer: "+super.toString();
-//		else
-//			return "Freelancerin: "+super.toString();
+
 		return super.toString();
 	}
 	

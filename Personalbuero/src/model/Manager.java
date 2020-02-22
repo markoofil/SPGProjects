@@ -33,8 +33,7 @@ public class Manager extends Mitarbeiter
 
 	public String toString()
 	{
-		if(getGesch() == 'm')
-			return "Manager: "+super.toString();
-		else
-			return "Managerin: "+super.toString();	}
+
+		return super.toString();
+	}
 }

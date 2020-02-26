@@ -53,5 +53,8 @@ public class Freelancer extends Mitarbeiter
 
 		return super.toString();
 	}
+
+	
+
 	
 }

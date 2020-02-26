@@ -1,8 +1,12 @@
 package model;
 
 import java.time.Year;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import model.NameComparator;
 import model.Angestellte;
 import model.Manager;
 
@@ -104,9 +108,12 @@ public class Personalbuero
 
 		if(!mitarbeiter.isEmpty())
 		{
-			for (Mitarbeiter m : mitarbeiter)
+			for(Mitarbeiter m: mitarbeiter)
 			{
-				anz++;
+				if(m instanceof Angestellte)
+				{
+					anz++;
+				}
 			}
 		}
 		else
@@ -274,12 +281,32 @@ public class Personalbuero
 			{
 				if(ma instanceof Manager)
 				{
-					((Manager) ma).setFixum( ((Manager) ma).getFixum() * ((float)(100+proz) / 100) );
-					System.out.println("Fixum wurde um "+proz+"% erhöht!");
+					((Manager) ma).setFixum(((Manager) ma).getFixum() * ((float) (100 + proz) / 100));
+					System.out.println("Fixum wurde um " + proz + "% erhöht!");
 				}
 			}
 		}
 		else
 			System.out.println("Keine Mitarbeiter vorhanden");
 	}
+
+	public void sortiereMitarbeiter()
+	{
+		Collections.sort(mitarbeiter);
+	}
+	public void sortiereNamen()
+	{
+		Collections.sort(mitarbeiter, new NameComparator());
+	}
+	
+	public void sortiereAlter()
+	{
+		Collections.sort(mitarbeiter, new AlterComparator());
+	}
+	
+	public void sortiereDienstalter()
+	{
+		Collections.sort(mitarbeiter, new DienstalterComparator());
+	}
+
 }

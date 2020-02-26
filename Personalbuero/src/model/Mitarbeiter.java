@@ -2,7 +2,7 @@ package model;
 
 import java.time.*;
 
-public abstract class Mitarbeiter
+public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 {
 	private String name;
 	private Year gebJahr, eintrJahr;
@@ -162,16 +162,34 @@ public abstract class Mitarbeiter
 	public String toString()
 	{
 		StringBuffer sb = new StringBuffer(10000);
-		
-		sb.append(getClass().getSimpleName()).append(" Name: ").append(name).append(" , Geb.Jahr: ").append(gebJahr).append(", Alter: ");
-		sb.append(berechneAlter()).append(", Geschlecht: ").append(getGesch()).append(", Eintr.Jahr: ").append(eintrJahr).append(", Dienstalter: ");
+
+		sb.append(getClass().getSimpleName()).append(" Name: ").append(name).append(" , Geb.Jahr: ").append(gebJahr)
+				.append(", Alter: ");
+		sb.append(berechneAlter()).append(", Geschlecht: ").append(getGesch()).append(", Eintr.Jahr: ")
+				.append(eintrJahr).append(", Dienstalter: ");
 		sb.append(berechneDienstalter()).append(", Gehalt: ").append(berechneGehalt());
-		
+
 		return sb.toString();
 	}
 
 	public void print()
 	{
 		System.out.println(toString());
+	}
+
+	@Override
+	public int compareTo(Mitarbeiter other)
+	{
+		if(other != null)
+		{
+			if(berechneGehalt() > other.berechneGehalt())
+				return 1;
+			else
+				if(berechneGehalt() < other.berechneGehalt())
+					return -1;
+				else
+					return 0;
+		}
+		return 1;
 	}
 }

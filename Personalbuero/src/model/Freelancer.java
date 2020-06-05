@@ -7,7 +7,7 @@ public class Freelancer extends Mitarbeiter
 	private float stundenSatz;
 	private int stunden;
 
-	public Freelancer(String name, Year gebJahr, Year eintrJahr, char gesch, float stundenSatz, int stunden)
+	public Freelancer(String name, Year gebJahr, Year eintrJahr, char gesch, float stundenSatz, int stunden) throws MitarbeiterException
 	{
 		super(name, gebJahr, eintrJahr, gesch);
 		setStundenSatz(stundenSatz);
@@ -24,22 +24,22 @@ public class Freelancer extends Mitarbeiter
 		return stunden;
 	}
 
-	public void setStundenSatz(float stundenSatz)
+	public void setStundenSatz(float stundenSatz) throws MitarbeiterException
 	{
 		if(stundenSatz > 0 )
 		{
 			this.stundenSatz = stundenSatz;
 		}
 		else
-			System.out.println("Stundensatz muss > 0 sein");
+			throw new MitarbeiterException("Stundensatz muss > 0 sein");
 	}
 
-	public void setStunden(int stunden)
+	public void setStunden(int stunden) throws MitarbeiterException
 	{
 		if(stunden > 0 && stunden <= 2500)
 			this.stunden = stunden;
 		else
-			System.out.println("Stundenanzahl muss zw. 0 & 2500 sein");
+			throw new MitarbeiterException("Stundenanzahl muss zw. 0 & 2500 sein");
 	}
 
 	@Override

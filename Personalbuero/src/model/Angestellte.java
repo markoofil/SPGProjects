@@ -5,7 +5,7 @@ import java.time.Year;
 public class Angestellte extends Mitarbeiter
 {
 
-	public Angestellte(String name, Year gebJahr, Year eintrJahr, char gesch)
+	public Angestellte(String name, Year gebJahr, Year eintrJahr, char gesch) throws MitarbeiterException
 	{
 		super(name, gebJahr, eintrJahr, gesch);
 	}

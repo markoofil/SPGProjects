@@ -6,7 +6,7 @@ public class Vertreter extends Mitarbeiter
 {
 	private float basisGehalt, umsatz;
 
-	public Vertreter(String name, Year gebJahr, Year eintrJahr, char gesch, float basisGehalt, float umsatz)
+	public Vertreter(String name, Year gebJahr, Year eintrJahr, char gesch, float basisGehalt, float umsatz) throws MitarbeiterException 
 	{
 		super(name, gebJahr, eintrJahr, gesch);
 		setBasisGehalt(basisGehalt);
@@ -23,20 +23,20 @@ public class Vertreter extends Mitarbeiter
 		return umsatz;
 	}
 
-	public void setBasisGehalt(float basisGehalt)
+	public void setBasisGehalt(float basisGehalt) throws MitarbeiterException
 	{
 		if(basisGehalt > 0)
 			this.basisGehalt = basisGehalt;
 		else
-			System.out.println("Wert für setBasisGehalt muss >0 sein");
+			throw new MitarbeiterException("Wert für setBasisGehalt muss >0 sein");
 	}
 
-	public void setUmsatz(float umsatz)
+	public void setUmsatz(float umsatz) throws MitarbeiterException
 	{
 		if(umsatz >= 0)
 			this.umsatz = umsatz;
 		else
-			System.out.println("Wert für setUmsatz muss positiv sein");
+			throw new MitarbeiterException("Wert für setUmsatz muss positiv sein");
 	}
 
 	@Override

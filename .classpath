@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="test/" kind="src" path="Exceptions/src"/>
+	<classpathentry kind="src" path="Exceptions/src/test"/>
+	<classpathentry kind="src" path="Galerie"/>
+	<classpathentry kind="src" path="ImmobilienMaklerPruefung/src"/>
+	<classpathentry excluding="test/" kind="src" path="Personalbuero/src"/>
+	<classpathentry kind="src" path="Personalbuero/src/test"/>
+	<classpathentry kind="src" path="Simulation"/>
+	<classpathentry kind="src" path="Uebung/src"/>
+	<classpathentry kind="output" path="Exceptions/bin"/>
+</classpath>

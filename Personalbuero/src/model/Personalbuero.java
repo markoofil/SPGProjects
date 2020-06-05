@@ -72,7 +72,7 @@ public class Personalbuero
 
 	}
 
-	public float berechneGehaltsSumme()
+	public float berechneGehaltsSumme() throws MitarbeiterException
 	{
 		float sum = 0;
 		if(!mitarbeiter.isEmpty())
@@ -81,12 +81,12 @@ public class Personalbuero
 				sum += m.berechneGehalt();
 			}
 		else
-			System.out.println("Keine Mitarbeiter vorhanden!");
+			throw new MitarbeiterException("Keine Mitarbeiter vorhanden!");
 
 		return sum;
 	}
 
-	public int zaehleAlter(int alter)
+	public int zaehleAlter(int alter) throws MitarbeiterException
 	{
 		int anz = 0;
 		if(!mitarbeiter.isEmpty())
@@ -96,12 +96,12 @@ public class Personalbuero
 					anz++;
 			}
 		else
-			System.out.println("Keine Mitarbeiter vorhanden!");
+			throw new MitarbeiterException("Keine Mitarbeiter vorhanden!");
 
 		return anz;
 	}
 
-	public int zaehleAngestellte()
+	public int zaehleAngestellte() throws MitarbeiterException
 	{
 		int anz = 0;
 
@@ -116,11 +116,11 @@ public class Personalbuero
 			}
 		}
 		else
-			System.out.println("Keine Mitarbeiter vorhanden!");
+			throw new MitarbeiterException("Keine Mitarbeiter vorhanden!");
 		return anz;
 	}
 
-	public float berechneAvgGehaltAngestellte()
+	public float berechneAvgGehaltAngestellte() throws MitarbeiterException
 	{
 
 		float sum = 0;
@@ -137,21 +137,22 @@ public class Personalbuero
 			return sum / anz;
 		}
 		else
-			System.out.println("Nicht genügend Mitarbeiter vorhanden");
+			throw new MitarbeiterException("Nicht genügend Mitarbeiter vorhanden");
 
-		return 0;
+//		return 0;
 	}
 
-	public boolean kuendigen(int pos)
+	public boolean kuendigen(int pos) throws MitarbeiterException
 	{
 		if(mitarbeiter.size() >= pos)
 		{
 			mitarbeiter.remove(pos);
-			System.out.println("Mitarbeiter auf Position: " + pos + " wurde gekündigt");
+//			System.out.println("Mitarbeiter auf Position: " + pos + " wurde gekündigt"); // Optional?
+			
 			return true;
 		}
 		else
-			System.out.println("Niemand musste dran glauben");
+//			System.out.println("Niemand musste dran glauben");
 		return false;
 
 	}
@@ -166,7 +167,7 @@ public class Personalbuero
 			if(ma.getName().equals(name))
 			{
 				iter.remove();
-				System.out.println(ma + " wurde gekündigt");
+//				System.out.println(ma + " wurde gekündigt");
 				return ma;
 			}
 
@@ -181,7 +182,7 @@ public class Personalbuero
 		while (iter.hasNext())
 		{
 			mitarbeiter.removeFirstOccurrence(ma);
-			System.out.println(ma + " wurde gekündigt");
+//			System.out.println(ma + " wurde gekündigt");
 			return true;
 		}
 
@@ -255,7 +256,7 @@ public class Personalbuero
 		return str;
 	}
 
-	public String praemienListe(Year jahr)
+	public String praemienListe(Year jahr) throws MitarbeiterException
 	{
 		String str = "";
 
@@ -272,7 +273,7 @@ public class Personalbuero
 		return str;
 	}
 
-	public void erhoeheManagerFixum(int proz)
+	public void erhoeheManagerFixum(int proz) throws MitarbeiterException
 	{
 		if(!mitarbeiter.isEmpty())
 		{
@@ -280,13 +281,16 @@ public class Personalbuero
 			{
 				if(ma instanceof Manager)
 				{
+					
+					
+					
 					((Manager) ma).setFixum(((Manager) ma).getFixum() * ((float) (100 + proz) / 100));
-					System.out.println("Fixum wurde um " + proz + "% erhöht!");
+//					System.out.println("Fixum wurde um " + proz + "% erhöht!"); // Zum Testen
 				}
 			}
 		}
 		else
-			System.out.println("Keine Mitarbeiter vorhanden");
+			throw new MitarbeiterException("Keine Mitarbeiter vorhanden");
 	}
 
 	public void sortiereMitarbeiter()

@@ -6,7 +6,7 @@ public class Manager extends Mitarbeiter
 {
 	private float fixum;
 
-	public Manager(String name, Year gebJahr, Year eintrJahr, char gesch, float fixum)
+	public Manager(String name, Year gebJahr, Year eintrJahr, char gesch, float fixum) throws MitarbeiterException
 	{
 		super(name, gebJahr, eintrJahr, gesch);
 		setFixum(fixum);
@@ -17,12 +17,12 @@ public class Manager extends Mitarbeiter
 		return fixum;
 	}
 
-	public void setFixum(float fixum)
+	public void setFixum(float fixum) throws MitarbeiterException
 	{
 		if(fixum > 0)
 			this.fixum = fixum;
 		else
-			System.out.println("Wert für setFixum muss >0 sein!");
+			throw new MitarbeiterException("Wert für setFixum muss >0 sein!");
 	}
 
 	@Override

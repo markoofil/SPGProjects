@@ -8,7 +8,7 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 	private Year gebJahr, eintrJahr;
 	private char gesch;
 
-	public Mitarbeiter(String name, Year gebJahr, Year eintrJahr, char gesch)
+	public Mitarbeiter(String name, Year gebJahr, Year eintrJahr, char gesch) throws MitarbeiterException
 	{
 		setName(name);
 		setGebJahr(gebJahr);
@@ -32,16 +32,21 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 		return eintrJahr;
 	}
 
+	public char getGesch()
+	{
+		return gesch;
+	}
+
 	// ------------------------------------ setter ------------------------
-	public void setName(String name)
+	public void setName(String name) throws MitarbeiterException
 	{
 		if(name != null)
 			this.name = name;
 		else
-			System.out.println("null-Referenz fuer setName !!!");
+			throw new MitarbeiterException("null-Referenz fuer setName !!!");
 	}
 
-	public void setGebJahr(Year gebJahr)
+	public void setGebJahr(Year gebJahr) throws MitarbeiterException
 	{
 		if(gebJahr != null)
 		{
@@ -50,13 +55,13 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 				this.gebJahr = gebJahr;
 			}
 			else
-				System.out.println("Mitarbeiter ist >100 Jahre alt!!");
+				throw new MitarbeiterException("Mitarbeiter ist >100 Jahre alt!!");
 		}
 		else
-			System.out.println("Null-Ref. für gebJahr übergeben");
+			throw new MitarbeiterException("Null-Ref. für gebJahr übergeben");
 	}
 
-	public void setEintrJahr(Year eintrJahr)
+	public void setEintrJahr(Year eintrJahr) throws MitarbeiterException
 	{
 		if(eintrJahr != null)
 		{
@@ -65,26 +70,21 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 				this.eintrJahr = eintrJahr;
 			}
 			else
-				System.out.println(
+				throw new MitarbeiterException(
 						"Ungültiger Wert übergeben! Info: Mitarbeiter kann nicht vor dem 15. Lebensjahr anfangen! Aktuelles Jahr soll nicht überschritten werden!");
 		}
 		else
-			System.out.println("Null-Ref. für eintrJahr übergeben");
+			throw new MitarbeiterException("Null-Ref. für eintrJahr übergeben");
 
 	}
 
-	public char getGesch()
-	{
-		return gesch;
-	}
-
-	public void setGesch(char gesch)
+	public void setGesch(char gesch) throws MitarbeiterException
 	{
 		gesch = Character.toLowerCase(gesch);
 		if(gesch == 'w' || gesch == 'm' || gesch == 'x')
 			this.gesch = gesch;
 		else
-			System.out.println("Falsches Format für setGesch gewählt!! (w,m oder x)");
+			throw new MitarbeiterException("Falsches Format für setGesch gewählt!! (w,m oder x)");
 	}
 
 	// -------------------------------------- others -----------------------
@@ -98,9 +98,9 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 		return Year.now().getValue() - eintrJahr.getValue();
 	}
 
-//
 	@SuppressWarnings("null")
-	public int berechneDienstalter(Year jahr) // z.B. um zu berechnen, wer im nächsten Jahr ein Jubiläum feiert
+	public int berechneDienstalter(Year jahr) throws MitarbeiterException // z.B. um zu berechnen, wer im nächsten Jahr
+																			// ein Jubiläum feiert
 	{
 		if(jahr != null)
 		{
@@ -110,18 +110,19 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 			}
 			else
 			{
-				System.out.println("Ein negatives Dienstalter ist nicht möglich! ");
-				return 0;
+				throw new MitarbeiterException("Ein negatives Dienstalter ist nicht möglich! ");
+//				return 0; // don't need it due to Exceptionhandling
 			}
 		}
 		else
-			System.out.println("Null-Ref. übergeben. Aktuelles Jahr wird verwendet (" + Year.now().getValue() + ")");
-		return jahr.getValue() - Year.now().getValue();
+		{
+			return jahr.getValue() - Year.now().getValue();
+		}
 	}
 
 	public abstract float berechneGehalt();
 
-	public float berechnePraemie(Year jahr)
+	public float berechnePraemie(Year jahr) throws MitarbeiterException // ohne Exception wird try catch vorgeschlagen
 	{
 		if(jahr != null)
 		{

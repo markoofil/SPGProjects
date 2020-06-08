@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /*
@@ -9,24 +11,24 @@ import java.util.Random;
  * 
  * TO-DO: 
  * Exceptionhandling
- * Multiplication
+ * Multiplication 
  * 
  */
 public class Matrix
 {
-
 	private int node;
-	private ArrayList<ArrayList> outer;
+	private ArrayList<ArrayList<Integer>> matrix;
 
 	public Matrix(int node)
 	{
 		setNode(node);
-		outer = new ArrayList<ArrayList>();
-
+		matrix = new ArrayList<>();
+		newMatrix();
 	}
 
 	public void setNode(int node)
 	{
+		// TODO:plausibilitätsprüfung
 		this.node = node;
 	}
 
@@ -35,200 +37,121 @@ public class Matrix
 		return node;
 	}
 
-	public void startMatrix()
+	public void createMatrix(ArrayList<ArrayList<Integer>> temp)
 	{
-		ArrayList<Integer> inner;
-
-		for (int h = 0; h < getNode(); h++)
+		for (int i = 0; i < node; i++)
 		{
-			inner = new ArrayList<Integer>();
-
-			for (int i = 0; i < getNode(); i++)
+			temp.add(new ArrayList<Integer>());
+			for (int j = 0; j < node; j++)
 			{
-
-				inner.add(0);
+				temp.get(i).add(j, 0);
 			}
-			outer.add(inner);
 		}
-
 	}
 
-//	probably if i make it return an arraylist it's gonna be easier to work with it..
-	public ArrayList<ArrayList> startMatrixNew()
+	public void newMatrix()
 	{
-		ArrayList<Integer> inner;
-
-		for (int h = 0; h < getNode(); h++)
+		for (int i = 0; i < node; i++)
 		{
-			inner = new ArrayList<Integer>();
-
-			for (int i = 0; i < getNode(); i++)
+			matrix.add(new ArrayList<Integer>());
+			for (int j = 0; j < node; j++)
 			{
-
-				inner.add(0);
+				matrix.get(i).add(j, 0);
 			}
-			outer.add(inner);
 		}
-		return outer;
-
 	}
-	/*
-	 * public void startMatrix() { ArrayList<Integer> inner;
-	 * 
-	 * int v = 0; for (int h = 0; h < getNode(); h++) { inner = new
-	 * ArrayList<Integer>();
-	 * 
-	 * for (int i = 0; i < getNode(); i++) { v++; inner.add(v); } outer.add(inner);
-	 * }
-	 * 
-	 * } Specific test. Don't mind that. Don't ask questions.
-	 */
 
 	public void printMatrix()
 	{
-
-		for (int column = 0; column < outer.size(); column++)
+		for (int i = 0; i < getNode(); i++)
 		{
-			for (int row = 0; row < outer.size(); row++)
+			for (int j = 0; j < getNode(); j++)
 			{
-
-				System.out.print(String.format("%3d", outer.get(column).get(row)));
+				System.out.print(String.format("%3d", (matrix.get(i).get(j))));
 			}
 			System.out.println();
 		}
 	}
 
-	public void showEdge(int v1, int v2)
+	public void printMatrix(ArrayList<ArrayList<Integer>> m)
 	{
-		System.out.println(outer.get(v1).get(v2));
-
-	}
-
-	@SuppressWarnings("unchecked")
-	public void changeEdge(int v1, int v2, int value)
-	{
-		if(v1 >= 0 && v2 >= 0)
+		for (int i = 0; i < getNode(); i++)
 		{
-			outer.get(v1).set(v2, value);
-		}
-	}
-
-	/*
-	 * @SuppressWarnings("unchecked") public void changeEdgeManualy(int v1, int v2,
-	 * int value) { if(v1 > 0 && v2 > 0) { v1 = v1 - 1; v2 = v2 - 1;
-	 * 
-	 * outer.get(v1).set(v2, value); } }
-	 */
-	@SuppressWarnings("unchecked")
-	public void addEdge(int v1, int v2) // increases the node-degree(?? valency .. Wertigkeit/Valenz ??) by 1
-	{
-		if(v1 > 0 & v2 > 0)
-		{
-			if(v1 < node && v2 < node)
+			for (int j = 0; j < getNode(); j++)
 			{
-				if(v1 > 0 && v2 > 0)
-				{
-					if(v1 != v2)
-					{
-						v1 = v1 - 1; // that way, the user just needs to type in the node
-						v2 = v2 - 1;
-						int n = (int) outer.get(v1).get(v2);
-						n++;
-						outer.get(v1).set(v2, n);
-					}
-					else
-						System.out.println("No Loops!");
-				}
+				System.out.print(String.format("%3d", m.get(i).get(j)));
 			}
-			else
-				System.out.println("Graph doesn't have so many nodes. Amount of nodes: " + node);
-		}
-		else
-			System.out.println("Tryin' to work with a negativ node is a No-Go dude. Node need's to be 1 or higher");
-	}
-
-	@SuppressWarnings("unchecked")
-	public void zeroMatrix()
-	{
-
-		for (int i = 0; i < outer.size(); i++)
-		{
-			for (int j = 0; j < outer.size(); j++)
-				outer.get(i).set(j, 0);
+			System.out.println();
 		}
 	}
-	/*
-	 * public void randomMatrix(int nodes, int valencyMax) // without self-referring
-	 * nodes { ArrayList<Integer> inner;
-	 * 
-	 * setNode(nodes); int x = 0; for (int h = 0; h < getNode(); h++) { inner = new
-	 * ArrayList<Integer>();
-	 * 
-	 * for (int i = 0; i < getNode(); i++) { if(h != i) { x = (int) (Math.random() *
-	 * 10 + 1); inner.add(x<valencyMax?x:0); } else inner.add(0); }
-	 * outer.add(inner); } }
-	 */
 
-//	multiplication hardcoded
-
-	public void multiplicateMatrix()
+	public String toString()
 	{
-		// graphx: create new graph - for saving the result				
-		// graph1: iterate through graph1 outer.get(h0).get(i0)
-		// graph2: iterate through graph2 outer.get(h0).get(i0)
-		// multiplicate graph1.currentValue by graph2.currentValue -- save as temp.
-		// value
-		// prepare position x & y or iterate through it ..
-		// add temp. value to graphx @ pos x & y graphx.changeEdge(x, y, temp. value)
-		// graph1: increase h++
-		// graph2: increase i++
+		String str = "";
 
-//	ArrayList<ArrayList> temp = outer; 
-	ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-	int prod = 0;
-//	int f1, f2 = 0;
-	
-	for (int i = 0; i < outer.size(); i++)
-	{
-//		outer.get(i).get
+		str += "Node: " + getNode();
+
+		return str;
 	}
-//	 ---------------	Faktor 1 -------------- * ------------ Faktor 2 -------------
-//	|prod += (int)(outer.get(row0).get(column0))*(int)(outer.get(column0).get(row0));|
-//	|prod += (int)(outer.get(row0).get(column1))*(int)(outer.get(column1).get(row0));|
-//	|prod += (int)(outer.get(row0).get(column2))*(int)(outer.get(column2).get(row0));|
-//	|result.get(0).set(0, prod);													 |
-//	|prod = 0;																		 |
-//	 --------------------------------------------------------------------------------
-//	prod += (int)(outer.get(row0).get(column0))*(int)(outer.get(row0).get(column1));
-//	prod += (int)(outer.get(row0).get(column1))*(int)(outer.get(row1).get(column1));
-//	prod += (int)(outer.get(row0).get(column2))*(int)(outer.get(row2).get(column1));
-//	result.get(0).set(1, prod);
-//	prod = 0;
-//	prod += (int)(outer.get(row0).get(column0))*(int)(outer.get(row0).get(column2));
-//	prod += (int)(outer.get(row0).get(column1))*(int)(outer.get(row1).get(column2));
-//	prod += (int)(outer.get(row0).get(column2))*(int)(outer.get(row2).get(column2));
-//	result.get(0).set(1, prod);
-//	prod = 0;
-	
-	for(int resultColumn = 0; resultColumn < outer.size(); resultColumn++)
+
+	public void print()
 	{
-		for(int resultRow = 0; resultRow < outer.size(); resultRow++)
+		System.out.println(toString());
+		printMatrix();
+	}
+
+	public void setValency(int i, int j, int valency)
+	{
+		matrix.get(i).set(j, valency);
+	}
+
+	public void multiply()
+	{
+
+		ArrayList<ArrayList<Integer>> temp = new ArrayList<>();
+		createMatrix(temp);
+
+		int sum = 0;
+
+		System.out.println(" Mit sich selbst multipliziert =  ");
+		for (int k = 0; k < getNode(); k++)
 		{
-			for(int row = 0; row < outer.size(); row++)
+			for (int i = 0; i < getNode(); i++)
 			{
-				int column = 0;
-				while(column < outer.size())
+				for (int j = 0; j < getNode(); j++)
 				{
-					prod += (int)(outer.get(row).get(column))*(int)(outer.get(column).get(row));
-					column++;
+//					System.out.print("get.(" + k + ")" + ".get(" + j + ") = " + temp.get(j).get(k));
+//					System.out.println(" get.(" + i + ")" + ".get(" + j + ") = " + temp.get(i).get(j));
+//					System.out.print("get.(" + k + ")" + ".get(" + j + ") = " + matrix.get(k).get(j));
+//					System.out.println(" get.(" + j + ")" + ".get(" + i + ") = " + matrix.get(j).get(i));
+					sum += (matrix.get(k).get(j)) * (matrix.get(j).get(i));
+
 				}
+
+				temp.get(k).add(i, sum);
+				sum = 0;
+
 			}
-			result.get(resultColumn).set(resultRow, prod);
-			prod = 0;
 		}
-	}
-	
-	
+		for (int i = 0; i < getNode(); i++)
+		{
+			for (int j = 0; j < getNode(); j++)
+			{
+				System.out.print(String.format("%3d", temp.get(i).get(j)));
+			}
+			System.out.println();
+		}
+
+		matrix.clear();
+		createMatrix(matrix);
+
+		for (int i = 0; i < getNode(); i++)
+		{
+			for (int j = 0; j < getNode(); j++)
+			{
+				matrix.get(i).add(j, temp.get(i).get(j));
+			}
+		}
 
 	}
 
